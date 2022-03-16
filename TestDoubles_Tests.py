@@ -10,6 +10,9 @@ def test_returnsCorrectString(monkeypatch):
     # Replace the file.open to return our mock file object rather than the actual file
     mock_open = MagicMock(return_value=mock_file)
     monkeypatch.setattr("builtins.open", mock_open) # Attach
+    # os.path.exists will return true
+    mock_exists = MagicMock(return_value=True)
+    monkeypatch.setattr("os.path.exists", mock_exists)
 
     # Call the method under test
     result = readFromFile("blah")
@@ -25,7 +28,7 @@ def test_throwsExcetionWithBadFile(monkeypatch):
     # Replace the file.open to return our mock file object rather than the actual file
     mock_open = MagicMock(return_value=mock_file)
     monkeypatch.setattr("builtins.open", mock_open) # Attach
-
+    # os.path.exists will return false
     mock_exists = MagicMock(return_value=False)
     monkeypatch.setattr("os.path.exists", mock_exists)
     with raises(Exception):
