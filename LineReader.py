@@ -1,2 +1,4 @@
 def readFromFile(url):
-    pass
+    infile = open(url, 'r')
+    line = infile.readline()
+    return line
