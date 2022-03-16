@@ -1,0 +1,2 @@
+def readFromFile(url):
+    pass
